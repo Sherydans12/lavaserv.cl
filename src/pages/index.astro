@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import { Picture } from "astro:assets";
+import technicianAtHome from "../assets/images/tecnico-lavadora-domicilio.jpg";
+import coquimboPhoto from "../assets/images/coquimbo.webp";
+
+const toWhatsapp = (message: string) => "https://wa.me/56999899870?text=" + encodeURIComponent(message);
+const whatsappUrl = toWhatsapp("Hola Lavaserv, necesito agendar una visita técnica.");
+const services = [
+  ["Lavadoras", "Revisión, reparación y mantención", "/servicios/lavadoras/"],
+  ["Secadoras", "Diagnóstico y reparación", "/servicios/"],
+  ["Lavavajillas", "Mantención y reparación", "/servicios/"],
+  ["Cocinas y otros", "Consulta por tu equipo", "/contacto/"],
+];
+const faults = ["No centrifuga", "No desagua", "Pierde agua", "Hace ruido", "No enciende", "Muestra un código"];
+---
+
+<BaseLayout title="Servicio técnico de lavadoras | Lavaserv" description="Servicio técnico de lavadoras, secadoras y línea blanca a domicilio en La Serena y Coquimbo. Agenda por WhatsApp.">
+  <section class="home-v5-hero shell">
+    <div class="home-v5-copy">
+      <h1>Atención técnica para <em>tu hogar.</em></h1>
+      <p>Lavadoras, secadoras, lavavajillas y otros equipos, con atención a domicilio en La Serena y Coquimbo.</p>
+      <div class="home-v5-actions">
+        <a class="button button-primary track-lead" href={whatsappUrl} data-cta="home_v5_hero_whatsapp">Solicitar atención <Icon name="arrow" size={18} /></a>
+        <a class="button button-quiet" href="tel:+56999899870"><Icon name="phone" size={18} /> Llamar ahora</a>
+      </div>
+      <div class="home-v5-facts">
+        <span><Icon name="check" size={16} /> Atención a domicilio</span>
+        <span><Icon name="check" size={16} /> Diagnóstico claro</span>
+        <span><Icon name="check" size={16} /> Garantía por trabajo</span>
+      </div>
+    </div>
+    <aside class="home-v5-local" aria-label="Cobertura de Lavaserv">
+      <Picture class="home-v5-local-photo" src={technicianAtHome} formats={["avif", "webp"]} layout="constrained" width={760} alt="Técnico revisando una lavadora en un domicilio" loading="eager" fetchpriority="high" />
+      <div class="home-v5-local-content">
+        <span>Atención local</span>
+        <strong>La Serena<br />y Coquimbo</strong>
+        <div><Icon name="message" size={18} /><span>WhatsApp y teléfono</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="home-v5-faults" aria-labelledby="faults-title">
+    <div class="shell">
+      <div><h2 id="faults-title">¿Qué está<br />pasando con<br />tu <em>equipo?</em></h2><p class="faults-lede">Elige una falla frecuente para iniciar tu consulta por WhatsApp.</p></div>
+      <div class="home-v5-fault-list" data-reveal="fault-list">
+        {faults.map((fault) => <a class="track-lead" href={toWhatsapp("Hola Lavaserv, mi equipo presenta esta falla: " + fault + ". Mi comuna es: ")} data-cta="home_v5_fault"><span>{fault}</span><Icon name="arrow" size={17} /></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-v5-services shell" aria-labelledby="services-title">
+    <div class="home-v5-services-intro"><h2 id="services-title">Servicios para<br /><em>tu rutina.</em></h2><p>Partimos por entender la falla y coordinamos una visita para revisar tu equipo en domicilio.</p><a class="inline-link" href="/servicios/">Ver todos los servicios <Icon name="arrow" size={16} /></a></div>
+    <div class="home-v5-service-list">{services.map(([name, detail, href]) => <a href={href}><strong>{name}</strong><span>{detail}</span><Icon name="arrow" size={20} /></a>)}</div>
+  </section>
+
+  <section class="home-v5-process">
+    <div class="shell">
+      <div class="process-header">
+        <span class="process-tag">Paso a paso</span>
+        <h2>Una visita. <em>Sin enredos.</em></h2>
+        <p>Proceso transparente y cómodo para recuperar la normalidad en tu hogar.</p>
+      </div>
+      <div class="home-v5-process-grid">
+        <article class="process-card">
+          <div class="process-badge">
+            <div class="process-icon">
+              <Icon name="message" size={28} />
+            </div>
+            <span class="process-step-num">01</span>
+          </div>
+          <h3>Cuéntanos la falla</h3>
+          <p>Escríbenos el tipo de electrodoméstico, la marca y el síntoma para comenzar.</p>
+        </article>
+        <article class="process-card">
+          <div class="process-badge">
+            <div class="process-icon">
+              <Icon name="calendar" size={28} />
+            </div>
+            <span class="process-step-num">02</span>
+          </div>
+          <h3>Coordinamos la visita</h3>
+          <p>Confirmamos tu comuna (La Serena o Coquimbo) y acordamos el horario más conveniente.</p>
+        </article>
+        <article class="process-card">
+          <div class="process-badge">
+            <div class="process-icon">
+              <Icon name="wrench" size={28} />
+            </div>
+            <span class="process-step-num">03</span>
+          </div>
+          <h3>Revisamos en domicilio</h3>
+          <p>Evaluamos el equipo en terreno, te entregamos un diagnóstico claro y la solución precisa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-v5-coverage shell">
+    <div class="coverage-card">
+      <div class="coverage-content">
+        <span class="coverage-badge">Cobertura directa</span>
+        <h2>Servicio técnico para tu <em>día a día.</em></h2>
+        <p>Cuando un electrodoméstico falla, la rutina se detiene. Lavaserv reúne técnicos dedicados, diagnóstico profesional y atención directa en un solo lugar.</p>
+        <div class="coverage-features">
+          <span><Icon name="check" size={16} /> Diagnóstico en terreno</span>
+          <span><Icon name="check" size={16} /> Presupuesto transparente</span>
+          <span><Icon name="check" size={16} /> Garantía en cada trabajo</span>
+        </div>
+      </div>
+      <aside class="coverage-aside">
+        <Picture class="coverage-aside-photo" src={coquimboPhoto} formats={["avif", "webp"]} width={600} alt="Vista de Coquimbo y La Serena" loading="lazy" />
+        <div class="coverage-aside-overlay"></div>
+        <div class="coverage-aside-content">
+          <span>Zona de atención</span>
+          <strong>La Serena<br />y Coquimbo</strong>
+          <a class="inline-link-light" href="/contacto/">Consultar otra comuna <Icon name="arrow" size={16} /></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="home-v5-bottom-zone">
+    <div class="shell">
+      <div class="faq home-v5-faq" aria-labelledby="faq-title">
+        <div>
+          <h2 id="faq-title">Antes de agendar,<br /><em>resolvemos dudas.</em></h2>
+          <p>La información esencial, clara y sin letras chicas.</p>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>¿Qué equipos revisan?<Icon name="arrow" size={18} /></summary>
+            <p>Lavadoras, secadoras, lavavajillas y otros equipos de línea blanca según disponibilidad.</p>
+          </details>
+          <details>
+            <summary>¿Dónde atienden?<Icon name="arrow" size={18} /></summary>
+            <p>Atendemos principalmente en La Serena y Coquimbo. Si estás en otra comuna de la Región de Coquimbo, escríbenos para consultar disponibilidad.</p>
+          </details>
+          <details>
+            <summary>¿Cómo agendo una visita?<Icon name="arrow" size={18} /></summary>
+            <p>Por WhatsApp o teléfono. Cuéntanos el equipo, la falla y tu comuna para coordinar de inmediato.</p>
+          </details>
+        </div>
+      </div>
+
+      <div class="final-call">
+        <div>
+          <h2>¿Necesitas revisar<br /><em>un equipo?</em></h2>
+          <p>Escríbenos directamente y coordinemos tu visita técnica hoy.</p>
+        </div>
+        <a class="button button-light track-lead" href={whatsappUrl} data-cta="home_v5_final_whatsapp">
+          Hablar por WhatsApp <Icon name="arrow" size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

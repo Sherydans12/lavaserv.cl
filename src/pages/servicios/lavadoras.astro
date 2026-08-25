@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+import { Picture } from "astro:assets";
+import washerDetail from "../../assets/images/revision-lavadora-detalle.jpg";
+
+const whatsapp = (message: string) => `https://wa.me/56999899870?text=${encodeURIComponent(message)}`;
+const whatsappUrl = whatsapp("Hola Lavaserv, necesito servicio técnico para mi lavadora. Mi comuna es: ");
+const faults = ["No centrifuga", "No desagua", "Pierde agua", "Hace ruido", "No enciende", "Muestra un error o código"];
+---
+
+<BaseLayout title="Servicio técnico de lavadoras | Lavaserv" description="Servicio técnico de lavadoras a domicilio en La Serena y Coquimbo. Agenda una visita con Lavaserv.">
+  <section class="washing-hero shell">
+    <div class="washing-copy">
+      <h1>Servicio técnico de <em>lavadoras a domicilio.</em></h1>
+      <p>¿Tu lavadora no centrifuga, no desagua o hace ruido? La revisamos en La Serena y Coquimbo.</p>
+      <div class="hero-actions">
+        <a class="button button-primary track-lead" href={whatsappUrl} data-cta="washer_hero_whatsapp">Agendar por WhatsApp <Icon name="arrow" size={18} /></a>
+        <a class="button button-quiet" href="tel:+56999899870"><Icon name="phone" size={18} /> Llamar ahora</a>
+      </div>
+      <div class="coverage-chips" aria-label="Comunas de atención">
+        <span><Icon name="pin" size={15} /> La Serena</span>
+        <span><Icon name="pin" size={15} /> Coquimbo</span>
+      </div>
+    </div>
+
+    <aside class="diagnostic-panel" aria-label="Accesos rápidos según la falla">
+      <div class="diagnostic-panel-head">
+        <span>Consulta rápida</span>
+        <span class="diagnostic-dot">Disponible por WhatsApp</span>
+      </div>
+      <h2>¿Qué falla presenta?</h2>
+      <p>Elige una opción para abrir WhatsApp con tu consulta iniciada.</p>
+      <div class="fault-grid" data-reveal="fault-list">
+        {faults.map((fault) => (
+          <a class="fault-link track-lead" href={whatsapp(`Hola Lavaserv, mi lavadora presenta esta falla: ${fault}. Mi comuna es: `)} data-cta={`washer_fault_${fault.toLowerCase().replaceAll(" ", "_")}`}>
+            <span>{fault}</span><Icon name="arrow" size={16} />
+          </a>
+        ))}
+      </div>
+      <a class="diagnostic-other" href="/contacto/">Otra falla o consulta <Icon name="arrow" size={16} /></a>
+    </aside>
+  </section>
+
+  <section class="washer-trust" aria-label="Condiciones de atención">
+    <div class="shell">
+      <span><Icon name="check" size={17} /> Atención a domicilio</span>
+      <span><Icon name="check" size={17} /> Diagnóstico claro</span>
+      <span><Icon name="check" size={17} /> Garantía por trabajo</span>
+    </div>
+  </section>
+
+  <section class="washer-details shell">
+    <div class="washer-details-intro">
+      <span class="process-tag">Preparación</span>
+      <h2>Empecemos con <em>la información justa.</em></h2>
+      <p>Para brindarte una respuesta rápida y precisa, ten a mano estos 3 datos al contactarnos:</p>
+      <Picture class="washer-evidence" src={washerDetail} formats={["avif", "webp"]} layout="constrained" width={620} alt="Técnico diagnosticando el panel de una lavadora" />
+    </div>
+    <div class="detail-points-grid">
+      <article class="detail-card">
+        <div class="detail-card-badge">
+          <span class="detail-num">01</span>
+          <div class="detail-icon"><Icon name="home" size={24} /></div>
+        </div>
+        <h3>Tu equipo y marca</h3>
+        <p>Tipo de lavadora (carga frontal o superior) y marca aproximada (Samsung, LG, Whirlpool, Midea, etc.).</p>
+      </article>
+      <article class="detail-card">
+        <div class="detail-card-badge">
+          <span class="detail-num">02</span>
+          <div class="detail-icon"><Icon name="wrench" size={24} /></div>
+        </div>
+        <h3>La falla que presenta</h3>
+        <p>Qué ocurre: no centrifuga, no bota el agua, hace ruido anormal o arroja algún código de error.</p>
+      </article>
+      <article class="detail-card">
+        <div class="detail-card-badge">
+          <span class="detail-num">03</span>
+          <div class="detail-icon"><Icon name="pin" size={24} /></div>
+        </div>
+        <h3>Tu comuna o sector</h3>
+        <p>La Serena, Coquimbo u otra localidad para verificar ruta y disponibilidad técnica en terreno.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="visit-flow-section">
+    <div class="shell">
+      <div class="visit-flow-head">
+        <span class="process-tag">Paso a paso</span>
+        <h2>Qué pasa <em>después.</em></h2>
+        <p>Un proceso sencillo, transparente y sin complicaciones desde el primer mensaje.</p>
+      </div>
+      <div class="visit-flow-grid">
+        <article class="visit-flow-card">
+          <div class="visit-card-badge">
+            <div class="visit-icon"><Icon name="message" size={28} /></div>
+            <span class="visit-num">01</span>
+          </div>
+          <h3>Nos cuentas la falla</h3>
+          <p>Escríbenos por WhatsApp con los datos de tu lavadora y te orientamos de inmediato.</p>
+        </article>
+        <article class="visit-flow-card">
+          <div class="visit-card-badge">
+            <div class="visit-icon"><Icon name="calendar" size={28} /></div>
+            <span class="visit-num">02</span>
+          </div>
+          <h3>Coordinamos la visita</h3>
+          <p>Fijamos fecha y rango de horario para acudir directamente a tu domicilio.</p>
+        </article>
+        <article class="visit-flow-card">
+          <div class="visit-card-badge">
+            <div class="visit-icon"><Icon name="wrench" size={28} /></div>
+            <span class="visit-num">03</span>
+          </div>
+          <h3>Revisamos en domicilio</h3>
+          <p>Evaluamos en terreno, te entregamos un diagnóstico claro y reparamos con garantía.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="home-v5-bottom-zone">
+    <div class="shell">
+      <section class="faq washer-faq" aria-labelledby="washer-faq-title">
+        <div>
+          <h2 id="washer-faq-title">Antes de <em>escribirnos.</em></h2>
+          <p>Respuestas directas a las dudas habituales para coordinar con total tranquilidad.</p>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>¿Dónde atienden? <Icon name="arrow" size={18} /></summary>
+            <p>Atendemos en toda el área urbana de La Serena y Coquimbo. Si estás en sectores aledaños, consúltanos disponibilidad.</p>
+          </details>
+          <details>
+            <summary>¿Qué información debo enviar? <Icon name="arrow" size={18} /></summary>
+            <p>Indica tu tipo de lavadora, marca si la conoces, síntoma que presenta y tu comuna de residencia.</p>
+          </details>
+          <details>
+            <summary>¿Puedo consultar por otro equipo? <Icon name="arrow" size={18} /></summary>
+            <p>¡Sí! También atendemos secadoras, lavavajillas y cocinas según disponibilidad técnica.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="final-call">
+        <div>
+          <h2>Recupera tu <em>rutina.</em></h2>
+          <p>Escríbenos por WhatsApp y coordinemos la revisión técnica de tu lavadora hoy mismo.</p>
+        </div>
+        <a class="button button-light track-lead" href={whatsappUrl} data-cta="washer_final_whatsapp">
+          Agendar por WhatsApp <Icon name="arrow" size={18} />
+        </a>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

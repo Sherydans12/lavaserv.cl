@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import brandLogo from "../assets/images/logo-lavaserv.png";
+const whatsappUrl = "https://wa.me/56999899870?text=Hola%20Lavaserv,%20necesito%20agendar%20una%20visita%20t%C3%A9cnica.";
+---
+
+<footer class="site-footer-wrap">
+  <div class="site-footer shell">
+    <div class="footer-brand">
+      <a class="brand brand-footer" href="/" aria-label="Lavaserv, inicio">
+        <Image class="brand-logo" src={brandLogo} width={74} alt="" loading="lazy" />
+        <span class="brand-name">LAVASERV</span>
+      </a>
+      <p>Servicio técnico de línea blanca<br />en La Serena y Coquimbo.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <strong>Explora</strong>
+        <a href="/">Inicio</a>
+        <a href="/servicios/">Servicios</a>
+        <a href="/servicios/lavadoras/">Servicio técnico lavadoras</a>
+        <a href="/nosotros/">Nosotros</a>
+      </div>
+      <div>
+        <strong>Contacto</strong>
+        <a class="track-lead" href={whatsappUrl} data-cta="footer_whatsapp">WhatsApp</a>
+        <a href="tel:+56999899870">+56 9 9989 9870</a>
+        <a href="mailto:contacto@lavaserv.cl">contacto@lavaserv.cl</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Lavaserv</span>
+      <span>Atención técnica para tu hogar.</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+import "../styles/photography.css";
+import "../styles/photography-extensions.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import brandLogo from "../assets/images/logo-lavaserv.png";
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const businessSchema = { "@context": "https://schema.org", "@type": "LocalBusiness", name: "Lavaserv", url: "https://lavaserv.baselogic.cl/", telephone: "+56999899870", email: "contacto@lavaserv.cl", areaServed: ["La Serena", "Coquimbo", "Región de Coquimbo"], serviceType: ["Servicio técnico de lavadoras", "Servicio técnico de secadoras", "Servicio técnico de lavavajillas"] };
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#044cab" />
+    <link rel="icon" href={brandLogo.src} type="image/png" sizes="500x500" />
+    <link rel="canonical" href={`https://lavaserv.baselogic.cl${Astro.url.pathname}`} />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)}></script>
+  </head>
+  <body>
+    <!--
+    THESIS: Lavaserv transforma una falla urgente en una visita técnica clara y local, evitando sitios lentos con navegación sin intención.
+    OWN-WORLD: Atención local formal: azul profundo, azul eléctrico, tipografía condensada y bloques de cobertura prácticos como objetos de diseño.
+    STORY: El visitante identifica su equipo, entiende el siguiente paso y contacta a Lavaserv por WhatsApp con la información necesaria.
+    FIRST VIEWPORT: Marca y navegación directa arriba; cobertura local y acción de WhatsApp visibles; cada ruta comienza con su propósito concreto.
+    FORM: Persuade, sistema multi-ruta de servicios locales. Seed key: lavaserv-service-system-2026.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    <Header currentPath={Astro.url.pathname} />
+    <main><slot /></main>
+    <Footer />
+    <WhatsAppButton />
+    <script is:inline>
+      document.querySelectorAll('.track-lead').forEach((link) => {
+        link.addEventListener('click', () => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'generate_lead', lead_source: link.dataset.cta || 'whatsapp' }); });
+      });
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const revealTargets = document.querySelectorAll('[data-reveal="fault-list"]');
+      if (!motionQuery.matches && 'IntersectionObserver' in window && revealTargets.length) {
+        document.documentElement.classList.add('motion-ready');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        revealTargets.forEach((target) => revealObserver.observe(target));
+      }
+    </script>
+  </body>
+</html>

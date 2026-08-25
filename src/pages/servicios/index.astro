@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+import { Picture } from "astro:assets";
+import kitchenTechnician from "../../assets/images/tecnico-cocina-domicilio.jpg";
+import dishwasherTechnician from "../../assets/images/revision-lavavajillas-domicilio.jpg";
+
+const whatsappUrl = "https://wa.me/56999899870?text=Hola%20Lavaserv,%20quiero%20consultar%20por%20un%20servicio%20t%C3%A9cnico.";
+const entries = [
+  {
+    name: "Servicio técnico de lavadoras",
+    description: "Revisión, diagnóstico preciso, reparación y mantención completa para equipos de carga frontal y superior.",
+    href: "/servicios/lavadoras/",
+    icon: "wrench",
+    highlight: "Servicio principal"
+  },
+  {
+    name: "Servicio técnico de secadoras",
+    description: "Revisión de fallas de secado, calor, poleas y mantención preventiva para recuperar su ciclo óptimo.",
+    href: "/contacto/",
+    icon: "home",
+    highlight: "A domicilio"
+  },
+  {
+    name: "Servicio técnico de lavavajillas",
+    description: "Diagnóstico y mantención especializada en problemas de desagüe, bombas, lavado y códigos de error.",
+    href: "/contacto/",
+    icon: "check",
+    highlight: "Multimarca"
+  },
+  {
+    name: "Cocinas y otros equipos",
+    description: "Evaluación y servicio para otros electrodomésticos del hogar. Consulta directamente disponibilidad.",
+    href: "/contacto/",
+    icon: "chat",
+    highlight: "Consulta directa"
+  }
+];
+---
+
+<BaseLayout title="Servicios técnicos | Lavaserv" description="Servicios técnicos de lavadoras, secadoras, lavavajillas y línea blanca en La Serena y Coquimbo.">
+  <section class="page-hero service-page-hero shell">
+    <div>
+      <p class="route-code">SERVICIOS / LAVASERV</p>
+      <h1>Tu equipo merece<br /><em>volver a funcionar.</em></h1>
+      <p class="service-hero-lede">Atendemos los electrodomésticos esenciales de tu hogar con diagnóstico profesional y atención directa en La Serena y Coquimbo.</p>
+      <div class="hero-facts">
+        <span><Icon name="check" size={16} /> Atención en domicilio</span>
+        <span><Icon name="check" size={16} /> Diagnóstico transparente</span>
+        <span><Icon name="check" size={16} /> Garantía escrita</span>
+      </div>
+    </div>
+    <div class="service-hero-visual">
+      <Picture class="service-hero-photo" src={kitchenTechnician} formats={["avif", "webp"]} layout="constrained" width={720} alt="Técnico revisando una cocina doméstica" loading="eager" fetchpriority="high" />
+    </div>
+  </section>
+
+  <section class="service-dossier shell">
+    <div class="dossier-heading">
+      <span class="process-tag">Catálogo de atención</span>
+      <h2>Servicios<br /><em>principales.</em></h2>
+      <p>Selecciona el electrodoméstico que necesitas reparar o mantener para ver información detallada o agendar tu visita.</p>
+    </div>
+    <div class="dossier-grid">
+      {entries.map(({ name, description, href, highlight }, index) => (
+        <a class="service-card" href={href}>
+          <div class="service-card-head">
+            <span class="service-index">0{index + 1}</span>
+            <span class="service-tag">{highlight}</span>
+          </div>
+          <div class="service-card-body">
+            <h3>{name}</h3>
+            <p>{description}</p>
+          </div>
+          <div class="service-card-action">
+            <span>Ver servicio</span>
+            <div class="service-action-icon">
+              <Icon name="arrow" size={16} />
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <div class="home-v5-bottom-zone">
+    <div class="shell">
+      <section class="split-call service-support-call">
+        <Picture class="service-support-photo" src={dishwasherTechnician} formats={["avif", "webp"]} layout="constrained" width={960} alt="Técnico revisando lavavajillas" />
+        <div>
+          <h2>¿No ves<br /><em>tu equipo?</em></h2>
+          <p>Descríbenos qué necesitas revisar. Te orientamos por WhatsApp antes de coordinar tu visita.</p>
+        </div>
+        <a class="button button-light track-lead" href={whatsappUrl} data-cta="services_whatsapp">
+          Consultar por WhatsApp <Icon name="arrow" size={18} />
+        </a>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

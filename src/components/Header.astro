@@ -1,0 +1,29 @@
+---
+import Icon from "./Icon.astro";
+import { Image } from "astro:assets";
+import brandLogo from "../assets/images/logo-lavaserv.png";
+
+const { currentPath = "/" } = Astro.props;
+const isActive = (path: string) => currentPath === path;
+const whatsappUrl = "https://wa.me/56999899870?text=Hola%20Lavaserv,%20necesito%20agendar%20una%20visita%20t%C3%A9cnica.";
+---
+
+<header class="site-header-wrap">
+  <div class="site-header shell">
+    <a class="brand" href="/" aria-label="Lavaserv, inicio">
+      <Image class="brand-logo" src={brandLogo} width={68} height={68} alt="Logo Lavaserv" loading="eager" />
+      <span class="brand-name">LAVASERV</span>
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a class:list={[{ active: isActive("/") }]} href="/">Inicio</a>
+      <a class:list={[{ active: isActive("/servicios/") }]} href="/servicios/">Servicios</a>
+      <a class:list={[{ active: isActive("/servicios/lavadoras/") }]} href="/servicios/lavadoras/">Lavadoras</a>
+      <a class:list={[{ active: isActive("/nosotros/") }]} href="/nosotros/">Nosotros</a>
+      <a class:list={[{ active: isActive("/contacto/") }]} href="/contacto/">Contacto</a>
+    </nav>
+    <a class="header-cta track-lead" href={whatsappUrl} data-cta="header_whatsapp">
+      <span>Agendar visita</span>
+      <Icon name="arrow" size={15} />
+    </a>
+  </div>
+</header>

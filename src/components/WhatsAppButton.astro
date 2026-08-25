@@ -1,0 +1,8 @@
+---
+import Icon from "./Icon.astro";
+const whatsappUrl = "https://wa.me/56999899870?text=Hola%20Lavaserv,%20necesito%20agendar%20una%20visita%20t%C3%A9cnica.";
+---
+
+<a class="floating-whatsapp track-lead" href={whatsappUrl} data-cta="floating_whatsapp" aria-label="Contactar a Lavaserv por WhatsApp">
+  <span class="whatsapp-icon"><Icon name="message" size={22} /></span><span class="floating-copy"><strong>¿Necesitas ayuda?</strong><small>Habla con Lavaserv</small></span>
+</a>

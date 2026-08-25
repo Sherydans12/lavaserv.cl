@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import { Picture } from "astro:assets";
+import homeVisit from "../assets/images/tecnico-visita-domicilio.jpg";
+const whatsappUrl = "https://wa.me/56999899870?text=Hola%20Lavaserv,%20quiero%20agendar%20una%20visita%20t%C3%A9cnica.";
+---
+
+<BaseLayout title="Nosotros | Lavaserv" description="Conoce Lavaserv, servicio técnico de línea blanca en La Serena y Coquimbo.">
+  <section class="page-hero about-page-hero shell"><div><p class="route-code">LAVASERV / NOSOTROS</p><h1>Servicio técnico<br /><em>que habla claro.</em></h1></div><div class="about-hero-visual"><Picture class="about-hero-photo" src={homeVisit} formats={["avif", "webp"]} layout="constrained" width={720} alt="Técnico llegando a un domicilio con sus herramientas" loading="eager" fetchpriority="high" /><p>Lavaserv nace para resolver fallas de línea blanca con una atención directa, cercana y centrada en lo que importa: recuperar tu rutina.</p></div></section>
+  <section class="values shell"><article><span>01</span><h2>Claridad<br />desde el inicio.</h2><p>Explicamos la falla y el siguiente paso en un lenguaje que puedas entender.</p></article><article><span>02</span><h2>Atención<br />en domicilio.</h2><p>Coordinamos la visita para revisar los equipos donde los usas.</p></article><article><span>03</span><h2>Foco en tu<br />día a día.</h2><p>Sabemos que cada equipo detenido cambia la rutina de tu hogar.</p></article></section>
+  <section class="about-note shell"><div><h2>La tecnología sirve<br />cuando te deja vivir<br /><em>más tranquilo.</em></h2></div><div><p>Desde lavadoras hasta otros equipos de línea blanca, la atención parte por entender la situación real de tu hogar. Escríbenos, cuéntanos la falla y coordinamos el siguiente paso.</p><a class="button button-primary track-lead" href={whatsappUrl} data-cta="about_whatsapp">Contactar a Lavaserv <Icon name="arrow" size={18} /></a></div></section>
+</BaseLayout>

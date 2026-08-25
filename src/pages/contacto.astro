@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+---
+
+<BaseLayout title="Contacto | Lavaserv" description="Agenda tu visita técnica con Lavaserv por WhatsApp o teléfono. Atención en La Serena y Coquimbo.">
+  <section class="contact-hero shell"><div><p class="route-code">CONTACTO / LAVASERV</p><h1>Cuéntanos qué<br /><em>necesitas revisar.</em></h1><p>Completa estos datos y abriremos WhatsApp con tu consulta lista para enviar.</p><div class="contact-direct"><a href="tel:+56999899870"><Icon name="phone" size={19} /> +56 9 9989 9870</a><a href="mailto:contacto@lavaserv.cl"><Icon name="message" size={19} /> contacto@lavaserv.cl</a></div></div>
+    <form id="contact-form" class="contact-form"><label>Equipo<select name="equipo" required><option value="Lavadora">Lavadora</option><option value="Secadora">Secadora</option><option value="Lavavajillas">Lavavajillas</option><option value="Cocina u otro equipo">Cocina u otro equipo</option></select></label><label>Marca <input name="marca" autocomplete="organization" placeholder="Ej.: LG, Samsung, Mademsa" /></label><label>Comuna<select name="comuna" required><option value="La Serena">La Serena</option><option value="Coquimbo">Coquimbo</option><option value="Otra comuna">Otra comuna</option></select></label><label>¿Qué está pasando?<textarea name="falla" rows="4" placeholder="Ej.: no centrifuga, pierde agua, no enciende" required></textarea></label><button class="button button-primary" type="submit">Continuar por WhatsApp <Icon name="arrow" size={18} /></button><p class="form-note">No enviaremos datos a otro sitio. Continuarás la conversación directamente por WhatsApp.</p></form>
+  </section>
+  <section class="contact-band"><div class="shell"><span><Icon name="pin" size={19} /> La Serena y Coquimbo</span><span><Icon name="message" size={19} /> Respuesta por WhatsApp</span><span><Icon name="phone" size={19} /> Llamadas directas</span></div></section>
+  <script is:inline>
+    const form = document.querySelector('#contact-form');
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const message = `Hola Lavaserv, necesito revisar una ${data.get('equipo')}. Marca: ${data.get('marca') || 'No indicada'}. Comuna: ${data.get('comuna')}. Falla: ${data.get('falla')}.`;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'generate_lead', lead_source: 'contact_form_whatsapp' });
+      window.location.assign(`https://wa.me/56999899870?text=${encodeURIComponent(message)}`);
+    });
+  </script>
+</BaseLayout>
